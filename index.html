@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista della Spesa</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Lista della Spesa</h1>
+
+    <!-- Form per aggiungere un elemento -->
+    <form action="/aggiungi" method="post">
+        <input type="text" name="elemento" placeholder="Aggiungi un elemento" required>
+        <button type="submit">Aggiungi</button>
+    </form>
+
+    <!-- Mostra la lista -->
+    {% if lista %}
+        <ul>
+            {% for elemento in lista %}
+                <li>
+                    {{ elemento }}
+                    <a href="/rimuovi/{{ loop.index0 }}">[Rimuovi]</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>La lista è vuota.</p>
+    {% endif %}
+</body>
+</html>
